@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 245 240 232;
+    --foreground: 26 26 26;
+    --primary: 47 93 58;
+    --accent: 255 107 53;
+  }
+
+  .dark {
+    --background: 18 24 20;
+    --foreground: 240 240 240;
+    --primary: 72 130 85;
+    --accent: 255 120 70;
+  }
+
+  body {
+    @apply bg-cream text-[#1A1A1A] font-sans;
+  }
+
+  .dark body {
+    @apply bg-[#121814] text-gray-100;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: 'Instrument Serif', serif;
+  }
+}
+
+@layer components {
+  .sidebar-link {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-[#2F5D3A]/10 hover:text-[#2F5D3A];
+  }
+
+  .sidebar-link.active {
+    @apply bg-[#2F5D3A]/15 text-[#2F5D3A] font-semibold;
+  }
+
+  .craft-card {
+    @apply bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply bg-[#2F5D3A] text-white px-4 py-2 rounded-xl font-semibold text-sm hover:bg-[#3D7A4A] transition-colors;
+  }
+
+  .btn-secondary {
+    @apply bg-[#F5F0E8] text-[#2F5D3A] px-4 py-2 rounded-xl font-semibold text-sm hover:bg-[#e8e3d8] transition-colors border border-[#2F5D3A]/20;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+}
+
+/* Masonry grid */
+.masonry-grid {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.masonry-grid_column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #2F5D3A33; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #2F5D3A66; }
+
+/* Animations */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0ede6 25%, #e0ddd5 50%, #f0ede6 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
