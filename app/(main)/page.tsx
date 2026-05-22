@@ -29,14 +29,19 @@ function HomeContent() {
 
   const fetchCrafts = useCallback(async () => {
     setLoading(true);
-    const params = new URLSearchParams();
-    if (q) params.set("q", q);
-    if (category !== "Todos") params.set("category", category);
-    if (difficulty !== "Todos") params.set("difficulty", difficulty);
-    const res = await fetch(`/api/crafts?${params}`);
-    const data = await res.json();
-    setCrafts(Array.isArray(data) ? data : []);
-    setLoading(false);
+    try {
+      const params = new URLSearchParams();
+      if (q) params.set("q", q);
+      if (category !== "Todos") params.set("category", category);
+      if (difficulty !== "Todos") params.set("difficulty", difficulty);
+      const res = await fetch(`/api/crafts?${params}`);
+      const data = await res.json();
+      setCrafts(Array.isArray(data) ? data : []);
+    } catch {
+      setCrafts([]);
+    } finally {
+      setLoading(false);
+    }
   }, [q, category, difficulty]);
 
   useEffect(() => { fetchCrafts(); }, [fetchCrafts]);
